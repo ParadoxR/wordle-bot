@@ -12,6 +12,7 @@ import Keyboard from "./keyboard/keyboard";
 function App() {
   const [word, setWord] = useState([]);
   const [result, setResult] = useState(2315);
+  const [hour, setHour] = useState(0)
 
   function makeId(length) {
     let Id = '';
@@ -148,22 +149,22 @@ function App() {
     <>
       <div className="everything">
         <div className="App-header">
-            <p>WORDLE-INATOR</p>
-            <Clock/>
+            <p className="headerElement">WORDLE-INATOR</p>
+            <Clock id="clock" setHour={setHour}/>
         </div>
-        <div className="App">
-          <div className="word">
-            <div id="welcomeAll">
-              <p className="welcomeWords">Good Afternoon</p>
-              <p className="welcomeWords">Kick back and input your guess.</p>
-            </div>
-            <div id="letters">
-              <Word>{letters}</Word>
-            </div>
-            <div id="keyboard">
-              <Keyboard handleKeyboardClick={handleKeyboardClick}/>
-            </div>
-          </div>
+        <div id="welcomeAll">
+          {hour >= 18 && hour <= 23 ? (
+            <p className="welcomeWords">Good Evening.</p>
+          ) : (
+            hour >= 12 && hour < 18 ? (
+              <p className="welcomeWords">Good Afternoon.</p>
+            ) : (
+              <p className="welcomeWords">Good Morning.</p>
+            )
+          )}
+          <p className="welcomeWords">Kick back and input your guess.</p>
+        </div>
+        <div id="App">
           <div className="analytics">
             <div id="displayGuess">
               <Guess words={result} guesses={wordleGuesses}></Guess>
@@ -177,16 +178,7 @@ function App() {
               <div id="displayAnswers">
                 <div id="upDownArrows">
                   <span>▴</span>
-                  <span>∷</span>
-                  <span>∷</span>
-                  <span>∷</span>
-                  <span>∷</span>
-                  <span>∷</span>
-                  <span>∷</span>
-                  <span>∷</span>
-                  <span>∷</span>
-                  <span>∷</span>
-                  <span>∷</span>
+                  <span className="extra">∷</span>
                   <span id="flipArrow">▴</span>
                 </div>
                 <div id="displayGuesses">
@@ -195,6 +187,15 @@ function App() {
               </div>
             </div>
           </div>
+          <div className="word">
+            <div id="letters">
+              <Word>{letters}</Word>
+            </div>
+            <div id="keyboard">
+              <Keyboard handleKeyboardClick={handleKeyboardClick}/>
+            </div>
+          </div>
+          
         </div>
         <div id="resetRun">
           <button className="calculate" id="reset" onClick={handleClickReset}>-RESET-</button>
