@@ -154,15 +154,15 @@ function App() {
         </div>
         <div id="welcomeAll">
           {hour >= 18 && hour <= 23 ? (
-            <p className="welcomeWords">Good Evening.</p>
+            <p className="welcomeWords">Good evening.</p>
           ) : (
             hour >= 12 && hour < 18 ? (
-              <p className="welcomeWords">Good Afternoon.</p>
+              <p className="welcomeWords">Good afternoon.</p>
             ) : (
-              <p className="welcomeWords">Good Morning.</p>
+              <p className="welcomeWords">Good morning.</p>
             )
           )}
-          <p className="welcomeWords">Kick back and input your guess.</p>
+          <p className="welcomeWords">Kick back and input your guess results.</p>
         </div>
         <div id="App">
           <div className="analytics">
@@ -170,21 +170,45 @@ function App() {
               <Guess words={result} guesses={wordleGuesses}></Guess>
             </div>
             <div id="answers">
-              {result.length === 1 ? (
+              {/* {result.length === 1 ? (
                 <p className="displayAnswersTitle">{result.length} REMAINING ANSWER</p>
               ) : (
                 <p className="displayAnswersTitle">REMAINING ANSWERS: {result.length}</p>
+              )} */}
+
+              {result.length > 0 ? (
+                result.length === 1 ? (
+                  <>
+                    <p className="displayAnswersTitle">{result.length} REMAINING ANSWER</p>
+                    <div id="displayAnswers">
+                      <div id="upDownArrows">
+                        <span>▴</span>
+                        <span className="extra">∷</span>
+                        <span id="flipArrow">▴</span>
+                      </div>
+                      <div id="displayGuesses">
+                        {displayGuesses}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <p className="displayAnswersTitle">REMAINING ANSWERS: {result.length}</p>
+                    <div id="displayAnswers">
+                      <div id="upDownArrows">
+                        <span>▴</span>
+                        <span className="extra">∷</span>
+                        <span id="flipArrow">▴</span>
+                      </div>
+                      <div id="displayGuesses">
+                        {displayGuesses}
+                      </div>
+                    </div>
+                  </>
+                )
+              ): (
+                <p id="doNotDisplay"></p>
               )}
-              <div id="displayAnswers">
-                <div id="upDownArrows">
-                  <span>▴</span>
-                  <span className="extra">∷</span>
-                  <span id="flipArrow">▴</span>
-                </div>
-                <div id="displayGuesses">
-                  {displayGuesses}
-                </div>
-              </div>
             </div>
           </div>
           <div className="word">

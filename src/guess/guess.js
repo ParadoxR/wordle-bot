@@ -47,7 +47,7 @@ function Guess({ words, guesses }) {
         <>
         <div className="guessComponent">
             {running ? (
-                <p className="guess">CALCULATING...</p>
+                <p className="guess" id="calculating"><span>-CALCULATING-</span></p>
             ) : (
                 words.length === 1 ? (
                     <p className="guess" id="oneAnswer">ANSWER: {guess}</p>
@@ -55,7 +55,7 @@ function Guess({ words, guesses }) {
                     <p className="guess">OPTIMAL GUESS: {guess}</p>
                 )
             )}
-            <progress id="progress" value={progress} max={9365}>Loading</progress>
+            {/* <progress id="progress" value={progress} max={9365}>Loading</progress> */}
         </div>
         </>
     );
